@@ -1,0 +1,68 @@
+def display_tasks(tasks):
+    print("\nTask List:")
+    for i, task in enumerate(tasks, 1):
+        print(f"{i}. {task[0]} - Priority: {task[1]}")
+    print()
+
+
+def add_task(tasks):
+    task_name = input("Enter the task name: ")
+    task_priority = int(input("Enter the task priority (1-5): "))
+    tasks.append((task_name, task_priority))
+
+
+def remove_task(tasks):
+    display_tasks(tasks)
+    task_index = int(input("Enter the task number to remove: ")) - 1
+    if 0 <= task_index < len(tasks):
+        tasks.pop(task_index)
+    else:
+        print("Invalid task number")
+
+
+def update_task(tasks):
+    display_tasks(tasks)
+    task_index = int(input("Enter the task number to update: ")) - 1
+    if 0 <= task_index < len(tasks):
+        task_name = input("Enter the new task name: ")
+        task_priority = int(input("Enter the new task priority (1-5): "))
+        tasks[task_index] = (task_name, task_priority)
+    else:
+        print("Invalid task number")
+
+
+def sort_tasks(tasks):
+    tasks.sort(key=lambda x: x[1])
+    print("Tasks sorted by priority.")
+
+
+def main():
+    tasks = []
+    while True:
+        print("Task Manager")
+        print("1. Display tasks")
+        print("2. Add task")
+        print("3. Remove task")
+        print("4. Update task")
+        print("5. Sort tasks")
+        print("6. Exit")
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            display_tasks(tasks)
+        elif choice == '2':
+            add_task(tasks)
+        elif choice == '3':
+            remove_task(tasks)
+        elif choice == '4':
+            update_task(tasks)
+        elif choice == '5':
+            sort_tasks(tasks)
+        elif choice == '6':
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
